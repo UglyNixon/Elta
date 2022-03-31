@@ -5,7 +5,7 @@ class TokenService{
 
       async generateTokens (payload){
 
-        const accessToken =  await jwt.sign(payload,process.env.JWT_KEY_ACCESS,{expiresIn:'30m'})
+        const accessToken =  await jwt.sign(payload,process.env.JWT_KEY_ACCESS,{expiresIn:'60m'})
         const refreshToken = await jwt.sign(payload,process.env.JWT_KEY_REFRESH,{expiresIn:'30d'})
 
         return {
@@ -13,6 +13,7 @@ class TokenService{
             refreshToken
         }
     }
+
     async saveToken (Id,refreshToken){
         const tokenData =await Token.findOne({where:{userId:Id}})
         if (tokenData) {
@@ -27,6 +28,36 @@ class TokenService{
 
     }
 
+    async validateAccessToken(token) {
+        try {
+            const userData = await jwt.verify(token,process.env.JWT_KEY_ACCESS);
+            return userData
+        } catch (error) {
+            return null
+        }
+
+    }
+
+    async validateRefreshToken(token) {
+        try {
+            const userData =  await jwt.verify(token,process.env.JWT_KEY_REFRESH);
+            return userData
+        } catch (error) {
+            return null
+        }
+
+    }
+
+
+    async removeToken (refreshToken) {
+          const token= await Token.destroy({where:{refreshToken:refreshToken}})
+        return token;
+    }
+
+    async findToken(refreshToken) {
+        const tokenData = await Token.findOne({where:{refreshToken:refreshToken}})
+        return tokenData;
+    }
 
 
 }
