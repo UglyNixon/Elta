@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#root{
+
+}
+
+body > #root  {
+    height: 100%;
+    min-height: 100vh;
+    font-family: Verdana;
+    background: linear-gradient(130deg, rgb(224 225 238 / 19%), rgb(144 98 246 / 52%));
+}

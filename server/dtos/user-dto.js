@@ -4,7 +4,7 @@ module.exports = class UserDto {
     isActivated;
     role;
     email;
-
+    code;
 
     constructor(model) {
         this.role = model.role;
@@ -12,6 +12,6 @@ module.exports = class UserDto {
         this.id = model.id;
         this.isActivated = model.isActivated;
         this.email=model.email;
-
+        this.code  =model.code;
     }
 }

@@ -7,7 +7,7 @@ const UserDto= require('../dtos/user-dto')
 const ApiError = require('../exceptions/api-error')
 
 class UserService {
-    async registration (login,email,password) {
+    async registration (login,email,password,code) {
         const candidate = await User.findOne({where:{login:login}});
         if (candidate) {
             throw  ApiError.BadRequest(`Пользователь ${login} уже зарегистрирован`)
@@ -21,6 +21,7 @@ class UserService {
                         login:login,
                         password:hashpassword,
                         activationLink:link,
+                        code:code
                     }
                 )
             await  mailService.sendActivationMail(email,`${process.env.API_URL}user/activate/${link}`)

@@ -14,7 +14,7 @@ module.exports = function (role) {
                 }
                 const userData = await tokenService.validateAccessToken(accessToken);
 
-                if (userData.role !=role) {
+                if (userData.role !==role) {
                     return next(ApiError.BadRole('Ошибка прав доступа'))
                 }
                 next()
