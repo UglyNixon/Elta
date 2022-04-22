@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import classes from "./ForModal.module.css";
-import AuthModal from "../AuthModal/AuthModal";
-const ForModal:FC = () => {
+
+
+const ForModal:FC = ({children}) => {
     return (
         <div className={classes.wrap}>
-           <AuthModal/>
+            {children}
         </div>
     );
 };
-
 export default ForModal;

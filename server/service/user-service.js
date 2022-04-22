@@ -1,4 +1,4 @@
-const {User, Token} = require("../models/user-model");
+const {User, Token} = require("../models/models");
 const bcrypt = require('bcrypt')
 const uuid=require('uuid')
 const mailService = require('./mail-service')
@@ -17,11 +17,12 @@ class UserService {
 
                 const user = await User.create(
                     {
+
                         email:email,
                         login:login,
                         password:hashpassword,
                         activationLink:link,
-                        code:code
+
                     }
                 )
             await  mailService.sendActivationMail(email,`${process.env.API_URL}user/activate/${link}`)

@@ -7,18 +7,27 @@ import {AuthResponse} from "../models/http/AuthResponse";
 
 
 export default class UserStore {
-    user = {} as IUser
-    isAuth=false
+    _user = {} as IUser
+    _isAuth=false
+
     constructor() {
         makeAutoObservable(this)
     }
 
     setAuth(bool:boolean){
-        this.isAuth=bool
+        this._isAuth=bool
     }
+    get isAuth (){
+
+        return this._isAuth
+    }
+    get User() {
+        return this._user
+}
+
 
     setUser(user:IUser){
-        this.user=user
+        this._user=user
     }
 
     async login(login:string,password:string){
@@ -27,16 +36,14 @@ export default class UserStore {
             localStorage.setItem('token',response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user)
+
         }catch (e:any) {
             console.log(e.response?.data?.message)
         }
     }
-    async registration(login:string,pass:string,email:string){
+    async registration(email:string,login:string,password:string,code:string){
         try {
-            const response = await AuthService.registration(login,pass,email)
-            localStorage.setItem('token',response.data.accessToken)
-            this.setAuth(true)
-            this.setUser(response.data.user)
+            const response = await AuthService.registration(email,login,password,code)
         } catch (e:any) {
             console.log(e.response?.data?.message)
         }
@@ -53,7 +60,7 @@ export default class UserStore {
         }
     }
 
-        async checkAuth(){
+    async checkAuth(){
             try {
                 const response = await axios.get<AuthResponse>(`/user/refresh`,{
                     withCredentials:true,
@@ -61,6 +68,7 @@ export default class UserStore {
                 })
                 localStorage.setItem('token',response.data.accessToken)
                 this.setAuth(true)
+
                 this.setUser(response.data.user)
                 return response
             } catch (e:any) {

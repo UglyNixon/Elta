@@ -1,6 +1,6 @@
 const jwt= require('jsonwebtoken')
 require('dotenv').config()
-const {Token} =require('../models/user-model')
+const {Token} =require('../models/models')
 class TokenService{
 
       async generateTokens (payload){

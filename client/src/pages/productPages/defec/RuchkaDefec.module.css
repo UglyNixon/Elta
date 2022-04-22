@@ -1,0 +1,38 @@
+.tr :nth-child(n) {
+    border: 1px solid black;
+    text-align: center;
+}
+.tr :nth-child(1) {
+    text-align: start;
+    padding: 0 6px
+}
+.tr :nth-child(2){
+    width: 140px;
+    height: 41px;
+}
+.tr :nth-child(n+3){
+    width: 50px;
+}
+.tr :nth-child(n+3) input{
+    width: 49px;
+}
+.tr :nth-child(2) input{
+    width: 139px;
+}
+input {
+    display: block;
+    height: 39px;
+    background: transparent;
+    border: 0;
+    line-height: 2em;
+    box-sizing: inherit;
+    color: #000000;
+    font-family:'Verdana', Arial, sans-serif;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 0 #FFF;
+    text-align: center;
+    padding: 0 0 0 10px
+}
+input:focus{
+    outline: none;
+}

@@ -1,0 +1,7 @@
+.cont {
+    display: flex;
+    align-items: center;
+}
+.black {
+   background-color: #36383c96;
+}

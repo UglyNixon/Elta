@@ -13,3 +13,48 @@ body > #root  {
     font-family: Verdana;
     background: linear-gradient(130deg, rgb(224 225 238 / 19%), rgb(144 98 246 / 52%));
 }
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.m-t-1{
+    margin-top: 5px;
+}.m-t-2{
+    margin-top: 10px;
+}.m-t-3{
+    margin-top: 15px;
+}
+.j-c{
+    justify-content: center;
+}
+.m-r-1{
+    margin-right: 5px;
+}
+.m-r-2{
+    margin-right: 10px;
+}
+.m-r-3{
+    margin-right: 15px;
+}
+.m-l-3{
+    margin-left: 5px;
+}
+.m-l-3{
+    margin-left: 10px;
+}
+.m-l-3{
+    margin-left: 15px;
+}
+
+
+
